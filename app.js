@@ -42,7 +42,7 @@ const app = express();
   })
 
   // Porta
-  const PORT = process.env.PORT|| 8081;
+  // const PORT = process.env.PORT|| 8081;
 
   // Body Parser
   app.use(express.json());
@@ -54,7 +54,7 @@ const app = express();
 
   // Mongoose
   mongoose.Promise = global.Promise;
-  mongoose.connect(mongoURL).then(()=> console.log('connected mongo')).catch((err)=>{console.log('erro mongo'+err)})
+  mongoose.connect("mongodb+srv://brunodevj:0EYYa1UCNrIXLUd0@blogapp.mrz5sbd.mongodb.net/?retryWrites=true&w=majori").then(()=> console.log('connected mongo')).catch((err)=>{console.log('erro mongo'+err)})
 
   // Public
   app.use(express.static(path.join(__dirname, 'public')));
@@ -144,7 +144,7 @@ app.get('/404', (req,res) =>{
   app.use('/usuarios', usuarios)
 // Outros
 try {
-  app.listen(PORT, () => {
+  app.listen(process.env.PORT, () => {
     console.log('executando servidor...');
   });
 } catch (error) {
